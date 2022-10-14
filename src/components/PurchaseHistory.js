@@ -30,6 +30,7 @@ const PurchaseHistory = () => {
     getPurchaseHistory();
   }, []);
 
+  if (purchases.length) {
   return (
     <div id="purchase-history-table">
       <fieldset>
@@ -93,6 +94,7 @@ const PurchaseHistory = () => {
       </fieldset>
     </div>
   );
+  }
 };
 
 export default PurchaseHistory;
