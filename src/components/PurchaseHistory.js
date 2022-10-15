@@ -41,7 +41,7 @@ const PurchaseHistory = () => {
         <legend id="form-legend">
           <h2 id="profile-header">{username}'s Purchase History</h2>
         </legend>
-        {purchases.message ? (
+        {purchases.length ? (
           <div>No Purchase History</div>
         ) : (
           purchases.map((purchase, i) => {
