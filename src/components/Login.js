@@ -4,7 +4,7 @@ import "../stylesheets/Login.css";
 
 // require("dotenv").config();
 // const path = process.env.REACT_APP_BASE_URL;
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Login = ({
   setToken,

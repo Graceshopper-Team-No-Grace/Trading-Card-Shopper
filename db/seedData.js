@@ -136,7 +136,7 @@ const createInitialProducts = async () => {
         ability2:
           "Miracle Powder: Flip a coin. If heads, choose a Special Condition. The Defending Pokémon is now affected by that Special Condition.",
         imagelink: "https://images.pokemontcg.io/xy7/54_hires.png",
-        inventorycount: 0,
+        inventorycount: 10,
         isactive: true,
       },
       {
@@ -149,7 +149,7 @@ const createInitialProducts = async () => {
         ability2:
           "Telekinesis: This attack does 50 damage to 1 of your opponent's Pokémon. This attack's damage isn't affected by Weakness or Resistance.",
         imagelink: "https://images.pokemontcg.io/bw8/13_hires.png",
-        inventorycount: 0,
+        inventorycount: 10,
         isactive: true,
       },
       {

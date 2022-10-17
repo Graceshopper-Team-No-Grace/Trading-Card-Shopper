@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import '../stylesheets/Details.css';
-const BASE_URL = "http://localhost:4000/api";
+const path = process.env.REACT_APP_BASE_URL;
 
 let purchaseItems = [];
 const Details = ({
@@ -46,8 +46,9 @@ const Details = ({
 
     useEffect(() => {
 
-        console.log("Inside useEffect for product", product.inventorycount);
-        if (product.inventorycount === 0) {
+        console.log("Inside useEffect for product", product);
+        const thisProduct = fetchProductById(product.id);
+        if (thisProduct.inventorycount === 0) {
             document.getElementById("addcard").disabled = true;
         }
         
@@ -56,7 +57,7 @@ const Details = ({
     const getCustomerCart = async() => {
         if(loggedIn) {
             try {
-                const response = await fetch(`${BASE_URL}/cart_products`, {
+                const response = await fetch(`${path}/cart_products`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
@@ -84,7 +85,7 @@ const Details = ({
 
     const fetchProductById = async (id) => {
         try {
-            const response = await fetch(`${BASE_URL}/products/${id}`);
+            const response = await fetch(`${path}/products/${id}`);
             const singleProduct = await response.json();
             return singleProduct.data;
         } catch (error) {
@@ -124,9 +125,11 @@ const Details = ({
         purchaseItems.push(item);
         console.log("Purchase Items is", purchaseItems);
         localStorage.setItem("cartItems", JSON.stringify([...purchaseItems]));
+        setProduct(item);
+        purchaseItems.pop();
 
           if(loggedIn) {
-              const response = await fetch(`${BASE_URL}/cart_products`, {
+              const response = await fetch(`${path}/cart_products`, {
                   method: "POST",
                   headers: {
                       'Content-Type': 'application/json',
@@ -177,7 +180,7 @@ const Details = ({
                 null
             }
             <h4 id="instock">In Stock: {product.inventorycount}</h4>
-            <h4 id="price">Price: {product.price}</h4>
+            <h4 id="price">Price: ${product.price}</h4>
             <hr></hr>
             <div>
             <button  onClick={() => adjustQuantity("subtract")} id="minus">-</button>
