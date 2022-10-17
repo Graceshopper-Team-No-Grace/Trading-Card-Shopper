@@ -9,7 +9,7 @@ const Checkout = ({
     let subTotal = 0;
     let cartItem = [];
 
-    const path = "http://localhost:4000/api";
+    const path = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {

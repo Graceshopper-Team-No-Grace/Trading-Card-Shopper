@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import "../stylesheets/Register.css";
 
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Register = ({ loggedIn, setLoggedIn, setToken }) => {
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");

@@ -21,7 +21,7 @@ const Products = (props) => {
         getAllData();
     }, []);
 
-    const BASE_URL = "http://localhost:4000/api";
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
 
     const getAllProducts = async () => {
         try {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../stylesheets/PurchaseHistory.css";
 
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const PurchaseHistory = () => {
   const [purchases, setPurchases] = useState([]);

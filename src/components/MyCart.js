@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const BASE_URL = "http://localhost:4000/api";
 import "../stylesheets/MyCart.css";
-const path = "http://localhost:4000/api";
+const path = process.env.REACT_APP_BASE_URL;
 
 const MyCart = ({
   loggedIn,
@@ -23,7 +23,7 @@ const MyCart = ({
       if (!cart.length) {
         setPriceTotal(0);
       } else {
-        localStorage.setItem("cartItems", JSON.stringify(cart));
+        //localStorage.setItem("cartItems", JSON.stringify(cart));
         cartTotal();
       }
 
@@ -50,7 +50,7 @@ const MyCart = ({
           console.log("Cart Test is", CartTest);
           setCart(CartTest);
         } else if (loggedIn && sessionCart) {
-          console.log("Now we have a session cart and adding new item");
+          console.log("If logged In and there is a session cart");
           if (cartArr.length) {
             await Promise.all(cartArr.map(cartItem => {
               addCartItemsToExistingCart({
@@ -200,7 +200,7 @@ const MyCart = ({
             await setError("Quantity exceeds Inventory");
             console.log("ERROR", error)
             await setPriceTotal(currentTotal)
-            await getCurrentCart()
+            //await getCurrentCart()
           } else if(loggedIn) {
             console.log("ELLO?")
             const response = await fetch(`${path}/cart_products`, {
@@ -219,7 +219,7 @@ const MyCart = ({
           console.log("RESULT", result)
           // setError("")
           await setPriceTotal(priceTotal + priceDifference)
-          await getCurrentCart()
+          //await getCurrentCart()
         } else {
           console.log("CART? Del", cart)
           const storageCart = JSON.parse(localStorage.getItem("cartItems"))
@@ -232,7 +232,7 @@ const MyCart = ({
           console.log("QTY", storageCart)   
           // setError("")
           await setPriceTotal(priceTotal + priceDifference)  
-          await getCurrentCart()
+          //await getCurrentCart()
       }
         }
       } catch (error) {
@@ -307,7 +307,7 @@ const MyCart = ({
                   :
                   <h2>No Items In Cart</h2>
               }
-            <div>Total: {priceTotal}</div>
+            <div>Total: ${priceTotal}</div>
             {
               loggedIn 
               ?
