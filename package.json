@@ -24,7 +24,7 @@
     "start:dev": "nodemon server.js",
     "client:build": "react-scripts build",
     "client:start": "react-scripts start",
-    "heroku-postbuild": "npm install && npm run build"
+    "heroku-postbuild": "npm install && npm run client:build"
   },
   "name": "trading-card-shopper",
   "description": "",
